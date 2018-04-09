@@ -10,17 +10,17 @@ import javax.persistence.Table;
 public class News {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     private
     Long ID;
 
-    @Column(name="category")
+    @Column(name = "category")
     private String category;
 
-    @Column(name="short_description")
+    @Column(name = "short_description")
     private String shortDescription;
 
-    @Column(name="content")
+    @Column(name = "content")
     private String content;
 
     public News() {
@@ -65,5 +65,13 @@ public class News {
         this.content = content;
     }
 
-
+    @Override
+    public String toString() {
+        return "News{" +
+                "ID=" + ID +
+                ", category='" + category + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

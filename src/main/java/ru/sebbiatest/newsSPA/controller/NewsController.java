@@ -5,32 +5,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.sebbiatest.newsSPA.model.News;
 import ru.sebbiatest.newsSPA.service.NewsService;
 
 import java.util.Map;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/news")
 public class NewsController {
 
-    NewsService newsService;
+    private NewsService newsService;
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<String> getCategories(){
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public Set<String> getCategories() {
         return newsService.getCategories();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Map<Long, String> getShortDescriptionsByCategory(@RequestParam String category){
+    @RequestMapping(value = "/getNewsByCategory", method = RequestMethod.GET)
+    public Map<Long, String> getShortDescriptionsByCategory(@RequestParam("category") String category) {
         return newsService.getShortDescriptionsByCategory(category);
     }
-/*
-    @RequestMapping(method = RequestMethod.POST)
-    public News showNews(@RequestParam Long id){
+
+    @RequestMapping(value = "/getArticle", method = RequestMethod.GET)
+    public News showNews(@RequestParam("id") Long id) {
         return newsService.getNewsById(id);
-    }*/
+    }
 
 
     public NewsController(NewsService newsService) {
